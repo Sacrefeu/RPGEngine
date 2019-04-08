@@ -4,7 +4,7 @@ SRC_DIR := src
 INC_DIR := include
 
 CXX := g++
-CXXFLAGS := -I$(INC_DIR) -std=c++17
+CXXFLAGS := -I$(INC_DIR) -fPIC -std=c++17
 
 srcfiles 	:= $(shell find . -name "*.cpp")
 objects := $(patsubst %.cpp, %.o, $(srcfiles))
@@ -19,7 +19,7 @@ depend: .depend
 
 .depend: $(srcfiles)
 	rm -f ./.depend
-	$(CXX) $(CXXFLAGS) -c -fPIC -MM $^>>./.depend;
+	$(CXX) $(CXXFLAGS) -c -MM $^>>./.depend;
 
 clean:
 	rm -f $(objects)
